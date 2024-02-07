@@ -1,0 +1,8 @@
+DB_HOST= 34.71.56.221
+DB_NAME= postgres
+# DB_HOST= localhost
+DB_USER= postgres
+DB_PASSWORD= Branch123!
+DB_PORT= 5432
+PORT= 3000
+BRANCH_SECRET= branchSecret
