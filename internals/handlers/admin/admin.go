@@ -179,7 +179,8 @@ func AdminLogin(c *fiber.Ctx) error {
 
 // Login JWT
 func createAdminLoginJWTToken(admin model.Admin) (string, int64, error) {
-	err := godotenv.Load(".env")
+	err := godotenv.Load("env")
+	// err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal(err)
 	}

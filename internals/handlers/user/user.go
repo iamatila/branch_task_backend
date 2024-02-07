@@ -212,7 +212,8 @@ func Login(c *fiber.Ctx) error {
 
 // Login JWT
 func createdLoginJWTToken(user model.User) (string, int64, error) {
-	err := godotenv.Load(".env")
+	err := godotenv.Load("env")
+	// err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -239,6 +240,7 @@ func createdLoginJWTToken(user model.User) (string, int64, error) {
 // // User info JWT
 // // func createdUserJWTToken(user string) (string, int64, error) {
 // func createdUserJWTToken(user model.User) (string, int64, error) {
+// 	err := godotenv.Load("env")
 // 	err := godotenv.Load(".env")
 // 	if err != nil {
 // 		log.Fatal(err)

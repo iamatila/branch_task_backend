@@ -21,7 +21,8 @@ func SetupUserRoutes(router fiber.Router) {
 }
 
 func SetupUser2Routes(router fiber.Router) {
-	err := godotenv.Load(".env")
+	err := godotenv.Load("env")
+	// err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal(err)
 	}

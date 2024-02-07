@@ -27,7 +27,8 @@ func main() {
 	// Setup the router
 	router.SetupRoutes(app)
 
-	err := godotenv.Load(".env")
+	err := godotenv.Load("env")
+	// err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal(err)
 	}
