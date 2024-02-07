@@ -1,30 +1,39 @@
 package main
 
 import (
+	"log"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/iamatila/branch_ass_backend/database"
+	"github.com/iamatila/branch_ass_backend/router"
+	"github.com/joho/godotenv"
 )
 
-func getPort() string {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = ":3000"
-	} else {
-		port = ":" + port
-	}
-
-	return port
-}
-
 func main() {
+	// Start a new fiber app
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{
-			"message": "Hello, Railway!",
-		})
-	})
+	// Initialize default config
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
+	}))
 
-	app.Listen(getPort())
+	// Connect to the Database
+	database.ConnectDB()
+
+	// Setup the router
+	router.SetupRoutes(app)
+
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal(err)
+	}
+	port := os.Getenv("PORT")
+
+	// Listen on PORT 3000
+	// app.Listen(port)
+	app.Listen(`0.0.0.0:` + port)
 }
